@@ -1,0 +1,64 @@
+\subsection{Что-то про аппроксимацию и регуляризации в кратце}
+
+Let's start from supervised learning and suppose the set of pairs is given:
+\begin{equation*}
+	D = \{ x^i, y^i \}_{i = 1}^N
+\end{equation*}
+
+where 
+\begin{equation*}
+y^i = f(x^i) + \epsilon
+\end{equation*}
+
+In other words, here is presented the dataset of function values in some nodes. In general case not important the dimension of $x$ and $y$, that is why the previous relation for $y$ can be rewritten as:
+\begin{equation*}
+	f: A \rightarrow B, \quad A \in R^n, B \in R^m
+\end{equation*}
+
+For simplicity, let $n = 1$, $m = 1$, for the other cases the same way.
+
+There are a lot of ways to build the approximation, for example using linear model, Linear regression, or using more advanced techniques, Ridge regression or Neural Networks (NN). For example, Linear regression:
+\begin{equation}
+	\label{eq:linear_1d}
+	\hat{y}^j = \beta_0 + \sum_{i = 1}^n \beta_i x^j_i = \beta_0 + \beta_1 x^j
+\end{equation}
+
+and the main goal is to estimate the coefficients $a_0$ and $a_1$. Here $n$ is the dimension of the $A$ space. If the dimension of $A$ is more than 1, the matrix form  is more suitable for \eqref{eq:linear_1d}:
+\begin{equation}
+	\label{eq:linear_matrix_form}
+	\hat{y}^j = \beta_0 + \sum_{i = 1}^n \beta_i x^j_i = x^T \beta \implies Y = X \beta
+\end{equation}
+
+
+In the general case, \eqref{eq:linear_matrix_form} can be rewritten as:
+\begin{equation}
+	\label{eq:linear_expansion}
+	\hat{y}^j = \beta_0 + \sum_{i = 1}^K \beta_i \phi_i(x^j_i) \quad \text{or} \quad Y = Z \beta, \text{where } Z^j_i = \phi_i(x^j_i)
+\end{equation}
+
+where the functions $\phi_j$ are predefined earlier depends on the specificity of the problem. $K$ is the count of the predefined functions.
+
+For the regression problem and for coefficients estimation the quality function or loss function is needed to be defined. 
+\begin{equation}
+	R(x) = \hat{y} - y, \quad R(x^i) = R^i = \hat{y}^i - y^i
+\end{equation}
+residual at $x^i$. 
+The main goal is to minimize the sum of residuals:
+\begin{equation*}
+	\sum_{x^i \in X} R(x) \rightarrow min, \quad \text{or }  \sum_{x^i \in X} g(R(x)) \rightarrow min
+\end{equation*}
+, $g$ is monotonic function - loss function.
+The most widely used loss function for this type of problem is the mean squared error or $R^2$ score. In this work, the mean squared error will be used:
+
+\begin{equation}
+	\mathcal{L} = \dfrac{1}{N} \sqrt{\sum_{i = 1}^N \left ( y_i - \hat{y_i} \right )^2} = \dfrac{1}{N} \sqrt{\sum_{i = 1}^N \left ( R^i \right )^2}
+	\label{eq:loss}
+\end{equation}
+where $y^i$ is the function value at $x^i$ from the dataset and $\hat{y^i}$ predicted from the model.
+
+For the estimate, the coefficients use the least-squares method for \eqref{eq:linear_matrix_form}:
+\begin{equation*}
+	\dfrac{\partial \mathcal{L}}{\partial a_i} = \dfrac{\partial}{\partial a_i} \dfrac{1}{N} \sqrt{\sum_{i = 1}^N \left ( R(x^i) \right )^2}
+\end{equation*}
+
+The considered way very powerful for estimation coefficients, for analysis and can be effectively solved via linear algebra instruments. Using statistical methods the number of needed functions and their values estimates with their confidence intervals. The problem can arise, when the possibility to calculate the derivatives is absent or the extremum of the loss function is not unique.

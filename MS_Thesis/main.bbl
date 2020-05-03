@@ -1,0 +1,82 @@
+\begin{thebibliography}{10}
+
+\bibitem{abramowitz1965handbook}
+M.~Abramowitz and I.A. Stegun.
+\newblock {\em Handbook of Mathematical Functions: With Formulas, Graphs, and
+  Mathematical Tables}.
+\newblock Applied mathematics series. Dover Publications, 1965.
+
+\bibitem{fourierintro}
+Maxime Bocher.
+\newblock {\em Introduction to the Theory of Fourier's Series}.
+\newblock Mathematics Department, Princeton University, Annals of Mathematics,
+  Second Series, Vol. 7, No. 3, 2020.
+
+\bibitem{dantzig_selector}
+Terence Candes, Emmanuel;~Tao.
+\newblock The dantzig selector: Statistical estimation when p is much larger
+  than n.
+\newblock pages 2313–--2351, 2007.
+
+\bibitem{dimov2019finite}
+I.~Dimov, I.~Farag{\'o}, and L.~Vulkov.
+\newblock {\em Finite Difference Methods. Theory and Applications: 7th
+  International Conference, FDM 2018, Lozenetz, Bulgaria, June 11-16, 2018,
+  Revised Selected Papers}.
+\newblock Lecture Notes in Computer Science. Springer International Publishing,
+  2019.
+
+\bibitem{finlayson2013method}
+B.A. Finlayson.
+\newblock {\em The Method of Weighted Residuals and Variational Principles}.
+\newblock Classics in Applied Mathematics. Society for Industrial and Applied
+  Mathematics, 2013.
+
+\bibitem{fletcher2012computational}
+C.A.J. Fletcher.
+\newblock {\em Computational Galerkin Methods}.
+\newblock Scientific Computation. Springer Berlin Heidelberg, 2012.
+
+\bibitem{gentle2007matrix}
+J.E. Gentle.
+\newblock {\em Matrix Algebra: Theory, Computations, and Applications in
+  Statistics}.
+\newblock Springer Texts in Statistics. Springer, 2007.
+
+\bibitem{haykin}
+S.S. Haykin.
+\newblock {\em Neural Networks: A Comprehensive Foundation}.
+\newblock International edition. Prentice Hall, 1999.
+
+\bibitem{ridge}
+Arthur E. Hoerl; Robert~W. Kennard.
+\newblock Ridge regression: Biased estimation for nonorthogonal problems.
+\newblock pages 55–--67, 1970.
+
+\bibitem{kress2012numerical}
+R.~Kress.
+\newblock {\em Numerical Analysis}.
+\newblock Graduate Texts in Mathematics. Springer New York, 2012.
+
+\bibitem{rlad}
+Ji~Zhu Li~Wang, Michael D.~Gordon.
+\newblock Regularized least absolute deviations regression and an efficient
+  algorithm for parameter tuning.
+\newblock pages 690–--700, 2006.
+
+\bibitem{mason2002chebyshev}
+J.C. Mason and D.C. Handscomb.
+\newblock {\em Chebyshev Polynomials}.
+\newblock CRC Press, 2002.
+
+\bibitem{slope}
+Weijie Su Emmanuel J.~Candes Małgorzata~Bogdan, Ewout van den~Berg.
+\newblock Statistical estimation and testing via the ordered l1 norm.
+\newblock 2013.
+
+\bibitem{lasso}
+Robert Tibshirani.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock pages 267--–288, 1996.
+
+\end{thebibliography}

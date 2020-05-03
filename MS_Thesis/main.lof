@@ -1,0 +1,8 @@
+\babel@toc {english}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Comparison of different regularizations}}{11}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Example of function expansion into the Fourier series with 3, 10, 18 terms}}{13}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Illustration of the theorems \ref {convergence-l2-norm}, \ref {convergence-pointwise} for the function from the previous example}}{14}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Chebyshev polynomias for n = 3, 4, 5, 6}}{14}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Chebyshev expansion with 3, 4, 5, 6 terms }}{16}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces The influence of the condition number on the solution accuracy}}{19}%

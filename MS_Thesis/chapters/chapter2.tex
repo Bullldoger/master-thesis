@@ -1,0 +1,22 @@
+\chapter{Solving differential equations}
+
+Before starting talking about solving a single partial differential equation (PDE) or system of PDEs and about neural networks need to clearly understand what are the existing methods for this problem, how they work, what the strong and weak sides, which facts influence the quality of the solution. 
+
+\section{Function approximation}
+
+\input{chapters/chapter2/chapter2_intro}
+\input{chapters/chapter2/chapter2_linear_regression}
+
+\newpage
+\section{Expansion the functions into the functional series}
+Linear regression looks like the function expansion, in some sense, into the series of predefined functions \eqref{eq:linear_expansion}. If let $\phi_i = cos$ then the linear regression transforms to cosine expansion, but without orthogonality criterion. Instead of cosines can be used any functions, Chebyshev polynomials or Legendre polynomials. 
+Let's talk about each function separately.
+
+\input{chapters/chapter2/chapter2_fourier}
+\input{chapters/chapter2/chapter2_chebyshev}
+\input{chapters/chapter2/chapter2_another}
+
+\newpage
+\section{Solving differentials equations}
+\input{chapters/chapter2/chapter2_de_intro}
+\input{chapters/chapter2/chapter2_de_solving}

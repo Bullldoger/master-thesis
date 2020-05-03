@@ -1,0 +1,61 @@
+\subsection{Solving Ordinary differential equations}
+In this part consider the arbitrary ODE:
+\begin{equation}
+	\label{eq:ode}
+	\begin{multlined}
+		\mathcal{D}\left (x, y, y^{(1)}, \dots, y^{(n)}\right) = 0, \quad x \in \Omega = [0, 1] \subset  R \\
+		B(y) = 0, \quad x \in \partial \Omega = \{0, 1\}
+	\end{multlined}
+\end{equation}
+, where $\mathcal{D}(\dots)$ - differential operator, $B(y)$ - boundary conditions function. 
+\begin{equation*}
+	B(y) = \begin{cases}
+		D(y) = 0, \quad x \in \partial \Omega_D = \{0, 1\} \\
+		N(y) = 0, \quad x \in \partial \Omega_N = \{0, 1\} 
+	\end{cases}, \partial \Omega_N \cup \partial \Omega_D = \partial \Omega
+\end{equation*}
+where $D(y)$ - Dirichlet boundary conditions and $\partial \Omega_D$ boundary for these conditions, N(y) - Neumann boundary conditions and $\partial \Omega_N$ is bound them.
+All of the equations considered now and in the future in this work will be defined as \eqref{eq:ode}.
+
+For solving this equation will be considered two methods, weighted residuals method \cite{fletcher2012computational} (Bubnov-Galerkin) and finite differences method \cite{dimov2019finite}.
+
+For concreteness, ODE example for consideration:
+\begin{equation*}
+	\begin{multlined}
+		\dfrac{d}{d x^2} y(x) + 2y = sin(2x) \left ( 1 - 2 sin(2x) \right), x \in [0, 1]\\
+		y(0) = 0, \quad \dfrac{d}{dx} y \Big|_{x = 0} = 1
+	\end{multlined}
+\end{equation*}
+, where $y = \dfrac{1}{2} sin(2x)$ - analytical solution.
+
+\subsubsection{Galerkin method}
+The key idea is to define the solution as:
+\begin{equation*}
+	y_h = \phi_0 + \sum_{i = 1}^N a_i \phi_i(x)
+\end{equation*}
+and $\phi_0$ satisfy all boundary conditions $\phi_0: B(\phi_0) = 0 \implies \phi_0(0) = 0, \phi_0(1) = 1$ and $\phi_i$ satisfy the homogenous boundary conditions $\phi_i(0) = \phi_i(1) = 0$. The solution to the problem is a some weighted sum of linearly independent functions that satisfy the boundary conditions and in the general case satisfy the initial conditions too. For calculation, the coefficients use minimization residual method, where:
+\begin{equation*}
+	\min_{a_1, \dots, a_n} R(a_1, \dots, a_n) = \int_{\Omega} \mathcal{D}(y_h) d\Omega + \int_{\partial \Omega_N} N(y_h) d\partial \Omega
+\end{equation*}
+From \cite{fletcher2012computational} is known that $R$ does not equal zero in the general case and for evaluating the coefficients use the integration with weight function:
+\begin{equation*}
+	\int_{\Omega} w R(a_1, \dots, a_n) d\Omega = \int_{\Omega} w \mathcal{D}(y_h) d\Omega + \int_{\partial \Omega_N} w N(y_h) d\partial \Omega = 0
+\end{equation*}
+, where $w = \psi_i$, weight functions. The residual and weight functions must be orthogonal.
+In a more general case without using $phi_0$ the residual is:
+\begin{equation*} 
+	\begin{multlined}
+		\int_{\Omega} \psi_j R(a_1, \dots, a_n) d\Omega = \int_{\Omega} \psi_i \mathcal{D}(\sum_{i = 1}^N a_i \phi_i(x)) d\Omega + \int_{\partial \Omega} \psi_j B(\sum_{i = 1}^N a_i \phi_i(x)) d\partial \Omega = \\ =
+		\int_{\Omega} \psi_j \mathcal{D}(\sum_{i = 1}^N a_i \phi_i(x)) d\Omega + \int_{\partial \Omega} \psi_j B(\sum_{i = 1}^N a_i \phi_i(x)) d\partial \Omega = \text{ if $\mathcal{D}$ is linear operator } = \\ = \int_{\Omega} \sum_{i = 1}^N  a_i \psi_j \mathcal{D}(\phi_i(x)) d\Omega + \int_{\partial \Omega} \sum_{i = 1}^N  a_i \psi_j B(\phi_i(x)) d\partial \Omega = 0
+	\end{multlined}
+\end{equation*}
+From the equation above system of algebraic equations can be constructed and solve it for unknown coefficients $a_i$.
+\subsubsection{Galerkin method, special case}
+If w is delta Dirac function, then the Galerkin method also called the Pointwise collocation method, which more easy for implementation.
+\begin{equation}
+	\begin{multlined}
+		w = \delta(x - x_k), x_k \in X \subset \Omega, \text{ and } \| X \| = K, \\
+		\int_{\Omega} \delta(x - x_k) R(a_1, \dots, a_n) d\Omega = \int_{\Omega} \delta(x - x_k) \mathcal{D}(\sum_{i = 1}^N a_i \phi_i(x)) d\Omega + \int_{\partial \Omega} \delta(x - x_k) B(\sum_{i = 1}^N a_i \phi_i(x)) d\partial \Omega = \\
+		 = \mathcal{D}(\sum_{i = 1}^N a_i \phi_i(x_k)) + B(\sum_{i = 1}^N a_i \phi_i(x_k))
+	\end{multlined}
+\end{equation}
