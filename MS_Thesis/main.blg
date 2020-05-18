@@ -16,45 +16,45 @@ Too many commas in name 1 of "Małgorzata Bogdan, Ewout van den Berg, Weijie Su,
 while executing---line 1090 of file plain.bst
 Warning--empty journal in slope
 Warning--empty journal in lasso
-You've used 14 entries,
+You've used 24 entries,
             2118 wiz_defined-function locations,
-            579 strings with 6144 characters,
-and the built_in function-call counts, 4183 in all, are:
-= -- 428
-> -- 121
+            640 strings with 7864 characters,
+and the built_in function-call counts, 7177 in all, are:
+= -- 698
+> -- 295
 < -- 4
-+ -- 52
-- -- 36
-* -- 190
-:= -- 669
-add.period$ -- 49
-call.type$ -- 14
-change.case$ -- 51
++ -- 120
+- -- 94
+* -- 396
+:= -- 1177
+add.period$ -- 75
+call.type$ -- 24
+change.case$ -- 109
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 216
-empty$ -- 365
-format.name$ -- 36
-if$ -- 943
+cite$ -- 29
+duplicate$ -- 306
+empty$ -- 604
+format.name$ -- 94
+if$ -- 1560
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 23
-newline$ -- 73
-num.names$ -- 28
-pop$ -- 92
+int.to.str$ -- 24
+missing$ -- 29
+newline$ -- 118
+num.names$ -- 48
+pop$ -- 170
 preamble$ -- 1
-purify$ -- 46
+purify$ -- 95
 quote$ -- 0
-skip$ -- 165
+skip$ -- 243
 stack$ -- 0
-substring$ -- 238
-swap$ -- 63
+substring$ -- 378
+swap$ -- 73
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 38
+type$ -- 76
 warning$ -- 5
-while$ -- 36
-width$ -- 16
-write$ -- 148
+while$ -- 59
+width$ -- 26
+write$ -- 243
 (There were 2 error messages)

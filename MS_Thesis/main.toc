@@ -1,19 +1,26 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Solving differential equations}{8}%
-\contentsline {section}{\numberline {1.1}Function approximation}{8}%
-\contentsline {subsection}{\numberline {1.1.1}Что-то про аппроксимацию и регуляризации в кратце}{8}%
-\contentsline {subsection}{\numberline {1.1.2}Что то про линейную регрессию}{10}%
-\contentsline {paragraph}{Impact of the regularization}{10}%
-\contentsline {section}{\numberline {1.2}Expansion the functions into the functional series}{11}%
-\contentsline {subsection}{\numberline {1.2.1}Fourier series}{11}%
-\contentsline {paragraph}{Example of function expansion into the Fourier series}{12}%
-\contentsline {subsubsection}{The strong sides of Fourier expansion}{13}%
-\contentsline {subsection}{\numberline {1.2.2}Chebyshev polynomials and series}{13}%
-\contentsline {paragraph}{Example of Chebyshev interpolation}{15}%
-\contentsline {subsection}{\numberline {1.2.3}Another functions and expansion over them}{15}%
-\contentsline {subsubsection}{Function expansion over sigmoid function}{16}%
-\contentsline {section}{\numberline {1.3}Solving differentials equations}{18}%
-\contentsline {subsection}{\numberline {1.3.1}Introduction}{18}%
-\contentsline {subsection}{\numberline {1.3.2}Solving Ordinary differential equations}{19}%
-\contentsline {subsubsection}{Galerkin method}{20}%
-\contentsline {subsubsection}{Galerkin method, special case}{21}%
+\contentsline {chapter}{\numberline {1}Solving differential equations}{8}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Function approximation}{8}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Что-то про аппроксимацию и регуляризации в кратце}{8}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Что то про линейную регрессию}{10}{subsection.1.1.2}%
+\contentsline {paragraph}{Impact of the regularization}{10}{paragraph*.4}%
+\contentsline {section}{\numberline {1.2}Expansion the functions into the functional series}{11}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Fourier series}{11}{subsection.1.2.1}%
+\contentsline {paragraph}{Example of function expansion into the Fourier series}{12}{paragraph*.5}%
+\contentsline {subsubsection}{The strong sides of Fourier expansion}{13}{subsubsection*.6}%
+\contentsline {subsection}{\numberline {1.2.2}Chebyshev polynomials and series}{13}{subsection.1.2.2}%
+\contentsline {paragraph}{Example of Chebyshev interpolation}{15}{paragraph*.7}%
+\contentsline {subsection}{\numberline {1.2.3}Another functions and expansion over them}{15}{subsection.1.2.3}%
+\contentsline {subsubsection}{Function expansion over sigmoid function}{16}{subsubsection*.8}%
+\contentsline {section}{\numberline {1.3}Solving differentials equations}{18}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Introduction}{18}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Solving Ordinary differential equations}{19}{subsection.1.3.2}%
+\contentsline {subsubsection}{Galerkin method}{20}{subsubsection*.9}%
+\contentsline {subsubsection}{Galerkin method, special case}{21}{subsubsection*.10}%
+\contentsline {subsubsection}{Finite difference method}{21}{subsubsection*.11}%
+\contentsline {subsubsection}{Comparison of the provided methods}{22}{subsubsection*.12}%
+\contentsline {subsubsection}{Artificial neural networks (ANN)}{23}{subsubsection*.13}%
+\contentsline {subsubsection}{Optimization part. Backpropagation algorithm}{24}{subsubsection*.14}%
+\contentsline {paragraph}{Optimizers comparison}{25}{paragraph*.15}%
+\contentsline {paragraph}{Example}{26}{paragraph*.16}%
+\contentsline {subsubsection}{Examples of ODE}{27}{subsubsection*.17}%
