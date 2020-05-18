@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: chapters/cover.aux
+A level-1 auxiliary file: chapters/contents.aux
+A level-1 auxiliary file: chapters/chapter2.aux
+A level-1 auxiliary file: chapters/biblio.aux
+The style file: plain.bst
+Database file #1: main.bib
+Too many commas in name 1 of "Małgorzata Bogdan, Ewout van den Berg, Weijie Su, Emmanuel J. Candes" for entry slope
+while executing---line 1049 of file plain.bst
+Warning--empty journal in dantzig_selector
+Warning--empty journal in ridge
+Warning--empty journal in rlad
+Too many commas in name 1 of "Małgorzata Bogdan, Ewout van den Berg, Weijie Su, Emmanuel J. Candes" for entry slope
+while executing---line 1090 of file plain.bst
+Warning--empty journal in slope
+Warning--empty journal in lasso
+You've used 24 entries,
+            2118 wiz_defined-function locations,
+            640 strings with 7864 characters,
+and the built_in function-call counts, 7177 in all, are:
+= -- 698
+> -- 295
+< -- 4
++ -- 120
+- -- 94
+* -- 396
+:= -- 1177
+add.period$ -- 75
+call.type$ -- 24
+change.case$ -- 109
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 306
+empty$ -- 604
+format.name$ -- 94
+if$ -- 1560
+int.to.chr$ -- 0
+int.to.str$ -- 24
+missing$ -- 29
+newline$ -- 118
+num.names$ -- 48
+pop$ -- 170
+preamble$ -- 1
+purify$ -- 95
+quote$ -- 0
+skip$ -- 243
+stack$ -- 0
+substring$ -- 378
+swap$ -- 73
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 76
+warning$ -- 5
+while$ -- 59
+width$ -- 26
+write$ -- 243
+(There were 2 error messages)

@@ -1,0 +1,135 @@
+\begin{thebibliography}{10}
+
+\bibitem{abramowitz1965handbook}
+M.~Abramowitz and I.A. Stegun.
+\newblock {\em Handbook of Mathematical Functions: With Formulas, Graphs, and
+  Mathematical Tables}.
+\newblock Applied mathematics series. Dover Publications, 1965.
+
+\bibitem{fourierintro}
+Maxime Bocher.
+\newblock {\em Introduction to the Theory of Fourier's Series}.
+\newblock Mathematics Department, Princeton University, Annals of Mathematics,
+  Second Series, Vol. 7, No. 3, 2020.
+
+\bibitem{dantzig_selector}
+Terence Candes, Emmanuel;~Tao.
+\newblock The dantzig selector: Statistical estimation when p is much larger
+  than n.
+\newblock pages 2313–--2351, 2007.
+
+\bibitem{cao2016locally}
+Linlin Cao, Ran He, and Bao-Gang Hu.
+\newblock Locally imposing function for generalized constraint neural networks
+  - a study on equality constraints, 2016.
+
+\bibitem{chauvin2013backpropagation}
+Y.~Chauvin and D.E. Rumelhart.
+\newblock {\em Backpropagation: Theory, Architectures, and Applications}.
+\newblock Developments in Connectionist Theory Series. Taylor \& Francis, 2013.
+
+\bibitem{dimov2019finite}
+I.~Dimov, I.~Farag{\'o}, and L.~Vulkov.
+\newblock {\em Finite Difference Methods. Theory and Applications: 7th
+  International Conference, FDM 2018, Lozenetz, Bulgaria, June 11-16, 2018,
+  Revised Selected Papers}.
+\newblock Lecture Notes in Computer Science. Springer International Publishing,
+  2019.
+
+\bibitem{Diffgrad}
+Shiv~Ram Dubey, Soumendu Chakraborty, Swalpa~Kumar Roy, Snehasis Mukherjee,
+  Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
+\newblock diffgrad: An optimization method for convolutional neural networks,
+  2019.
+
+\bibitem{Adagrad}
+John Duchi, Elad Hazan, and Yoram Singer.
+\newblock Adaptive subgradient methods for online learning and stochastic
+  optimization.
+\newblock {\em Journal of Machine Learning Research}, 12(61):2121--2159, 2011.
+
+\bibitem{finlayson2013method}
+B.A. Finlayson.
+\newblock {\em The Method of Weighted Residuals and Variational Principles}.
+\newblock Classics in Applied Mathematics. Society for Industrial and Applied
+  Mathematics, 2013.
+
+\bibitem{fletcher2012computational}
+C.A.J. Fletcher.
+\newblock {\em Computational Galerkin Methods}.
+\newblock Scientific Computation. Springer Berlin Heidelberg, 2012.
+
+\bibitem{gentle2007matrix}
+J.E. Gentle.
+\newblock {\em Matrix Algebra: Theory, Computations, and Applications in
+  Statistics}.
+\newblock Springer Texts in Statistics. Springer, 2007.
+
+\bibitem{haykin}
+S.S. Haykin.
+\newblock {\em Neural Networks: A Comprehensive Foundation}.
+\newblock International edition. Prentice Hall, 1999.
+
+\bibitem{ridge}
+Arthur E. Hoerl; Robert~W. Kennard.
+\newblock Ridge regression: Biased estimation for nonorthogonal problems.
+\newblock pages 55–--67, 1970.
+
+\bibitem{Adam}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization, 2014.
+
+\bibitem{kress2012numerical}
+R.~Kress.
+\newblock {\em Numerical Analysis}.
+\newblock Graduate Texts in Mathematics. Springer New York, 2012.
+
+\bibitem{Lagaris_1998}
+I.E. Lagaris, A.~Likas, and D.I. Fotiadis.
+\newblock Artificial neural networks for solving ordinary and partial
+  differential equations.
+\newblock {\em IEEE Transactions on Neural Networks}, 9(5):987–1000, 1998.
+
+\bibitem{rlad}
+Ji~Zhu Li~Wang, Michael D.~Gordon.
+\newblock Regularized least absolute deviations regression and an efficient
+  algorithm for parameter tuning.
+\newblock pages 690–--700, 2006.
+
+\bibitem{liu2019solving}
+Zeyu Liu, Yantao Yang, and Qing-Dong Cai.
+\newblock Solving differential equation with constrained multilayer feedforward
+  network, 2019.
+
+\bibitem{mason2002chebyshev}
+J.C. Mason and D.C. Handscomb.
+\newblock {\em Chebyshev Polynomials}.
+\newblock CRC Press, 2002.
+
+\bibitem{slope}
+Weijie Su Emmanuel J.~Candes Małgorzata~Bogdan, Ewout van den~Berg.
+\newblock Statistical estimation and testing via the ordered l1 norm.
+\newblock 2013.
+
+\bibitem{Pun_2019}
+G.~P.~Purja Pun, R.~Batra, R.~Ramprasad, and Y.~Mishin.
+\newblock Physically informed artificial neural networks for atomistic
+  modeling of materials.
+\newblock {\em Nature Communications}, 10(1), May 2019.
+
+\bibitem{Sirignano_2018}
+Justin Sirignano and Konstantinos Spiliopoulos.
+\newblock Dgm: A deep learning algorithm for solving partial differential
+  equations.
+\newblock {\em Journal of Computational Physics}, 375:1339–1364, Dec 2018.
+
+\bibitem{lasso}
+Robert Tibshirani.
+\newblock Regression shrinkage and selection via the lasso.
+\newblock pages 267--–288, 1996.
+
+\bibitem{Adadelta}
+Matthew~D. Zeiler.
+\newblock Adadelta: An adaptive learning rate method, 2012.
+
+\end{thebibliography}
