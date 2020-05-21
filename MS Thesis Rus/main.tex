@@ -9,12 +9,20 @@
 % \usepackage{hyperref}
 %\usepackage[T2A]{fontenc}
 \usepackage{scrextend}
+% \usepackage{graphicx}
+% \usepackage{subfig}
 \usepackage[colorlinks=true, urlcolor=red, hidelinks]{hyperref}
 
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
 \begin{document}
-\include{chapters/cover} % Your title pages, abstracts and acknowledgments
+\selectlanguage{russian}
+% \include{chapters/cover} % Your title pages, abstracts and acknowledgments
 \include{chapters/contents} % Probably you don't need to change it
-\include{chapters/chapter2}
+\include{chapters/part1}
+\include{chapters/part2}
 % \include{chapters/chap_template} 
 \setlength\parindent{24pt}
 \appendix

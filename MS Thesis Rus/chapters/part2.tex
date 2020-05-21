@@ -1,0 +1,324 @@
+\chapter*{Решение задачи распространения трещины ГРП}
+
+Гидравлический разрыв пласта (ГРП) обычно используется для повышения продуктивности залежей углеводородов и является ключевым методом доступа к нетрадиционным сланцевым коллекторам. ГРП используется не только для создания макро-масштабных трещин, но также в соединении и реактивации ранее существовавших трещин на всех масштабах для создания транспортных путей внутри пластов. Транспортная связь между существовавшими ранее разломами (то есть перфорациями, швами и естественными трещинами) часто имеет решающее значение для добычи углеводородов из пластов. Эти естественные разрушения или другие дефекты могут вызывать сложные геометрии разрушения и пути потока, возникающие как в результате разрушения при растяжении, так и в результате сдвига. 
+
+Поскольку большинство скважин обсажены и требуют перфорирования для доступа к пласту, большинство операций по ГРП проводится через перфорацию. Перфорации играют жизненно важную роль в происхождении сложной геометрии разрушения. В трещиноватых коллекторах перфорации часто являются единственным гидравлическим соединением между трещиноватым коллектором и стволом скважины. 
+
+Гидравлические трещины, вызванные существующими перфорационными отверстиями, будут переориентироваться в направлении нормали к минимальному напряжению в дальней зоне, когда они распространяются из ствола скважины. Вблизи ствола скважины могут возникать множественные субпараллельные трещины вследствие процессов инициирования трещин, таких как перфорации и естественные дефекты, расположенные на стенке ствола скважины с открытым стволом. Гидравлические трещины обычно возникают либо из-за перфораций, расположенных в обсаженном стволе скважины, либо из существующих ранее естественных трещин, пересекающих необсаженный ствол скважины. 
+
+\newpage
+
+Однако, когда угол перфорации и разность горизонтальных напряжений велики, могут возникать двойные трещины вдоль перфораций и направления максимального напряжения. Это означает, что трещины, образованные гидравлическим разрывом от ориентированных перфораций, могут быть очень сложными.
+
+В работаx \cite{selvadurai1996mechanics}, \cite{wang2017theory}, \cite{merxhani2016introduction} представлен подробный вывод всех уравнений необходимых уравнений. Более подробное описание процессов, таких как течение суспензии в поровых средах и моделирование процесса ГРП можно найти здесь \cite{liu2019fluid}, \cite{veatch2017essentials}.
+
+\section*{Моделирование пороупругой среды}
+
+Система уравнений, описывающая процесс фильтрации флюида в пороупругой среде:
+\begin{equation}
+	\begin{multlined}
+		- \nabla \cdot \sigma - \alpha \nabla p = 0 \\[10pt]
+		\phi \rho_f c_t \dfrac{\partial p}{\partial t} + \nabla \cdot \left ( -\dfrac{\rho_f k}{\mu} \nabla p \right ) = 0
+	\end{multlined}
+\end{equation}
+
+В представленной системе уравнений не рассматриваются процессы утечки флюида в пласт. Также исключена диффузионная составляющая из уравнения состояния для скелета:
+\begin{equation*}
+	- \nabla \cdot \sigma - \alpha \nabla p = \rho_s \dfrac{\partial^2 u}{\partial t^2} = 0
+\end{equation*}
+
+Объемные деформации также считаются пренебрежимо малыми:
+\begin{equation*}
+	\dfrac{\partial \epsilon_v}{\partial t} = \dfrac{\partial \nabla \cdot u}{\partial t} = 0
+\end{equation*}
+
+Итоговая система уравнений для дальнейшего анализа выглядит следующим образом:
+\begin{equation}
+	\label{eq:poroelasticity}
+	\begin{multlined}
+		- \nabla \cdot \sigma - \alpha \nabla p = 0, \quad \sigma = \lambda \left ( \nabla \cdot u \right ) I + 2 \mu \epsilon, \quad \epsilon = \dfrac{1}{2} \left [ \nabla u + \left ( \nabla u\right )^T \right ] \\[10pt]
+		\phi \rho_f c_t \dfrac{\partial p}{\partial t} + \nabla \cdot \left ( -\dfrac{\rho_f k}{\mu} \nabla p \right ) = 0\\[10pt] \phi = \phi_0 e^{c_s \left ( p - p_0 \right )}, \quad c_t = c_f + \dfrac{\phi_0}{\phi} c_s, \quad \rho_f = \rho_0 \left ( 1 + c_f \left ( p - p_0  \right ) \right )
+	\end{multlined}
+\end{equation}
+
+\newpage
+
+Все приближения были взяты с точностью до $o(h)$ - линейного члена, так как рассматривается задача малых деформаций, поровое давление и плотности флюида меняются не значительно. При выводе системы уравнений использовался закон Дарси для описания скорости фильтрации флюида. Граничные и начальные условия будут рассмотрены далее.
+
+% \section*{Критерий разрушения}
+
+Рассмотрим разрушение в некоторой области, которая подчиняется линейному закону:
+\begin{equation}
+	\label{eq:linear_elasticity}
+	-\nabla \sigma = f
+\end{equation}
+
+Пусть имеется прямоугольная область $\Omega = [0, 1] \times [0, 1]$ и граничные условия:
+\begin{equation*}
+	\begin{cases}
+		\vec{u} = \left [ u_x, u_y \right ]^T \cdot \vec{n}  = u_{0}, \quad \vec{x} = \left [ x, y \right ] \in \partial \Omega_d \\
+		\sigma \cdot n = T, \quad \vec{x} = \left [ x, y \right ] \in \partial \Omega_t
+	\end{cases}
+\end{equation*}
+
+На части границы заданы фиксированные перемещения, на оставшейся границе постоянные напряжения.
+
+Решение уравнения \eqref{eq:linear_elasticity} - поле перемещений для всей области $\Omega$.
+
+\subsubsection{Пример}
+Решение уравнения \eqref{eq:linear_elasticity} для граничных условий:
+\begin{equation}
+	\label{eq:boundary_conditions_1}
+	\begin{cases}
+		u_x = 0, \quad x = 0 \\
+		u_y = 0, \quad y = 2 \\
+		\sigma \cdot n = T_1 = 10^6 \text{ Па}, x = 2 \\
+		\sigma \cdot n = T_2 = 5 \cdot 10^6 \text{ Па}, y = 0
+	\end{cases}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/solution_displacement_1.png}
+	\caption{Решение задачи \eqref{eq:linear_elasticity} совместно с граничными условиями \eqref{eq:boundary_conditions_1}}
+	\label{fig:solution_1}
+\end{figure}
+
+Данная задача решается методом конечного элемента в вариационной постановке \cite{finlayson2013method}, \cite{fletcher2012computational}:
+\begin{equation}
+	\label{eq:variation_linear_elasticity}
+	\begin{multlined}
+		\int_{\Omega} \left [ -\nabla \sigma \cdot v \right ] d \Omega = \int_{\Omega} f \cdot v d \Omega \\
+		\text{Первая формула Грина \cite{фихтенгольц1968основы}:} \int_{\Omega} \left [ -\nabla \sigma \cdot v \right ] d \Omega = \int_{\Omega} \left [ \sigma \times \nabla v \right ] d \Omega - \int_{\partial \Omega} \left [ v \cdot \left ( \sigma \cdot \vec{n} \right ) \right ] d \partial \Omega \\
+		\int_{\Omega} \left [ \sigma \times \nabla v \right ] d \Omega = \int_{\partial \Omega} \left [ v \cdot \left ( \sigma \cdot \vec{n} \right ) \right ] d \partial \Omega + \int_{\Omega} f \cdot v d \Omega
+	\end{multlined}
+\end{equation}
+Домножив исходное уравнение на тестовую (пробную функцию $v$) и проинтегрировав по области получаем постановку задачи в слабой форме. Данная задача решалась с использованием свободно распространяемого пакета Fenics\footnote{Проект FEniCS представляет собой набор бесплатных программных компонентов с открытым исходным кодом, общая цель которых - обеспечить автоматическое решение дифференциальных уравнений}. Далее это программное обеспечение будет рассмотрено подробнее, важно что Fenics предоставляет инструменты для решения вариационных задач (линейных и нелинейных).
+На \ref{fig:solution_1} изображено поле перемещений - решение задачи \eqref{eq:linear_elasticity}.
+
+\subsection*{Моделирование разрушения}
+
+Рассмотрим диаграмму деформирования\footnote{Диаграмма деформирования — графическое изображение зависимости между напряжениями и деформациями материала. Эта характеристика различна для различных материалов и определяется с помощью регистрации величины деформации при определённых приращениях величины растягивающих или сжимающих усилий}. Для построения диграммы использовалось уравнение Рамберга-Осгуда \footnote{Уравнение Рамберга-Осгуда было создано, чтобы описать нелинейную зависимость между напряжением и деформацией} :
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/stress_strain_1.png}
+	\caption{Диаграмма деформирования}
+	\label{fig:stress_strain_1}
+\end{figure}
+
+Данная кривая была смоделирована и состоит из двух зон:
+\begin{itemize}
+	\item Зона упругих деформаций
+	\item Зона пластических деформаций
+\end{itemize}
+
+При рассмотрении хрупких тел, пластические деформации, или необратимые деформации, отсутствуют, вместо этого сразу происходит разрушение. В данной работе рассматриваются только хрупкие тела и хрупкие разрушения, отсюда следует что при переходе из зоны упругих деформаций в зону пластических деформаций наступает разрушение. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/linear_zone.png}
+	\caption{Зона упругих деформаций}
+	\label{fig:linear_zone}
+\end{figure}
+
+\newpage
+На \ref{fig:linear_zone} видно, что до некоторого напряжения, тело подчиняется линейному закону Гука. Простым критерием разрушения может быть максимальное растяжение (или сжатие), при которых упругая зона переходит в пластическую, а поскольку рассматриваются только хрупкие тела, то происходит сразу разрушение, соответственно.
+
+Для приведенной кривой максимальная деформация, которая ведет к разрушению может быть взята $\approx 5 \cdot 10^{-5}$ (\ref{fig:criterion})
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/criterion.png}
+	\caption{Критерий разрушения}
+	\label{fig:criterion}
+\end{figure}
+
+Таким образом, имея задачу \eqref{eq:linear_elasticity} и критерий разрушения можно смоделировать область с заданными граничными условиями, а также предположить место разрушения.
+
+\subsubsection{Пример}
+
+Рассмотрим задачу \eqref{eq:linear_elasticity} и граничные условия:
+\begin{equation}
+	\label{eq:boundary_conditions_2}
+	\begin{cases}
+		u_x = u_y = 0, \quad y = 2 \\
+		\sigma \cdot n = T_1 = 10^6 \text{ Па}, x = \{0, 2\} \\
+		\sigma \cdot n = T_2 = 5 \cdot 10^6 \text{ Па}, y = 0
+	\end{cases}
+\end{equation}
+
+Результат решения задачи - поле напряжений и объемных деформаций. Также, из поля деформаций, применительно к данной задаче, можно сделать выводы о возникновении разрушения.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/sigma_xx_1.png}
+	\caption{Поле напряжений, $\sigma_{xx}$}
+	\label{fig:sigma_xx_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/sigma_yy_1.png}
+	\caption{Поле напряжений, $\sigma_{yy}$}
+	\label{fig:sigma_y_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/sigma_yy_1.png}
+	\caption{Поле объемных деформаций, $\epsilon_v$}
+	\label{fig:epsilon_v}
+\end{figure}
+
+Видно, что в точках $(x = 0, y = 2)$ и $(x = 2, y = 2)$ возникают наибольшие напряжения и величина объемных деформаций также высока, отсюда можно сделать вывод, что разрушение начнется из этих точек и далее будет распространяться вдоль кривых на \ref{fig:epsilon_v}.
+
+\subsection*{Моделирование распространения трещины ГРП}
+Для решения задачи \eqref{eq:poroelasticity} требуется построить слабую форму уравнения. Подробный вывод представлен, например, в \cite{osti_1592387}.  В \eqref{eq:poroelasticity} искомыми функциями являются $(u, p) \in V$ - пространство дважды непрерывных функций. Аналогично \eqref{eq:variation_linear_elasticity} введем проверочные функции $(v, q) \in V_h $ и применим первую формулу Грина. Для первого уравнения:
+
+\begin{equation*}
+	\begin{multlined}
+		\int_{\Omega} \left [ - \nabla \cdot \sigma \cdot v - \alpha \nabla p \cdot v \right ] d \Omega = \\
+		= \int_{\partial \Omega} \left [ v \cdot \left ( \sigma \cdot \vec{n} \right ) \right ] d \partial \Omega + \int_{\Omega} \left [ \sigma \times \nabla v \right ] d \Omega - \int_{\partial \Omega} \alpha \nabla p \cdot v d \Omega
+	\end{multlined}
+\end{equation*}
+
+Для второго уравнения вывод будет сделан в 2 
+этапа, первый - замена производных по времени на дискретный аналог, явный, а далее интегрирование с пробной функцией:
+\begin{equation*}
+	\begin{multlined}
+		\phi \rho_f c_t \dfrac{\partial p}{\partial t} + \nabla \cdot \left ( -\dfrac{\rho_f k}{\mu} \nabla p \right ) \approx \phi \rho_f c_t  \dfrac{p - p^t}{\tau} + \nabla \cdot \left ( -\dfrac{\rho_f k}{\mu} \nabla p^t \right ) = 0
+	\end{multlined}
+\end{equation*}
+
+И интегрирование по частям:
+\begin{equation*}
+	\begin{multlined}
+		\int_{\Omega} \left [ \phi \rho_f c_t  \dfrac{p - p^t}{\tau} q + \nabla \cdot \left ( -\dfrac{\rho_f k}{\mu} \nabla p^t \right ) q \right ] d \Omega = 	\\[10pt] = \phi \rho_f c_t \int_{\Omega} \dfrac{p q - p^t q}{\tau} d \Omega - \int_{\Omega } \left [ \left ( -\dfrac{\rho_f k}{\mu} \nabla p^t \right ) \cdot \nabla q \right ] d \Omega + \int_{\Omega } \left [ \left ( -\dfrac{\rho_f k}{\mu} \nabla p^t \cdot n\right ) q \right ] d \partial \Omega
+	\end{multlined}
+\end{equation*}
+
+
+Система полученных уравнений была решена средствами Fenics и использовались слабые формы уравнений.
+
+\subsection*{Результаты}
+
+Предложенная задача была решена с параметрами представленными на \ref{tab:params}. Расчет был произведен для разных значений угла между линией перфорации и направлением, перпендикулярным направлению максимального напряжения. Для простоты реализации алгоритма, вместо вращения линии перфорации, вращалась ось координат так, чтобы имитировать различные углы перфорации. 
+
+\begin{table}
+	\centering
+	\begin{tabular}{|| M{2.5cm} | M{2.5cm} | M{2.5cm} | M{2.5cm} | M{2.5cm} ||} 
+		\hline
+		Эксперимент № & $\theta$, [рад.] & $\sigma_{min}$ [Па] & $\sigma_{max}$ [Па] & $\epsilon_{max}$ \\ [2ex]
+		\hline \hline
+		1 & $\cfrac{\pi}{4}$ & $10^6$ & $5 \cdot 10^6$ & $ 95 \cdot 10^{-3}$ \\ [3ex]
+		\hline
+		2 & $\cfrac{\pi}{12}$ & $10^6$ & $5 \cdot 10^6$ & $ 95 \cdot 10^{-3}$\\ [3ex]
+		\hline
+		4 & $-\cfrac{\pi}{12}$ & $10^6$ & $5 \cdot 10^6$ & $ 95 \cdot 10^{-3}$\\ [3ex]
+		\hline
+		5 & $-\cfrac{\pi}{4}$ & $10^6$ & $5 \cdot 10^6$ & $ 95 \cdot 10^{-3}$\\ [3ex] 
+		\hline
+ 	\end{tabular}
+ 	\caption{Параметры проведения экспериментов}
+ 	\label{tab:params}
+\end{table}
+
+Величины механических параметров:
+\begin{equation*}
+	E = 10 \cdot 10^{9} \text{ [Па] }, \nu = 0.25
+\end{equation*}
+
+Проницаемость и вязкость флюида:
+\begin{equation*}
+	k = 200 \text{ [мДа] }, \mu = 10^{-7} \text{ [м / с] [м] }
+\end{equation*}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.65 \textwidth]{images/part2/crack_1.png}
+% 	\caption{Эксперимент № 1, полученная трещина}
+% 	\label{fig:crack_1}
+% \end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.65 \textwidth]{images/part2/crack_2.png}
+% 	\caption{Эксперимент № 2, полученная трещина}
+% 	\label{fig:crack_2}
+% \end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.65 \textwidth]{images/part2/crack_3.png}
+% 	\caption{Эксперимент № 3, полученная трещина}
+% 	\label{fig:crack_3}
+% \end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.65 \textwidth]{images/part2/crack_4.png}
+% 	\caption{Эксперимент № 4, полученная трещина}
+% 	\label{fig:crack_4}
+% \end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.65 \textwidth]{images/part2/crack_5.png}
+% 	\caption{Эксперимент № 5, полученная трещина}
+% 	\label{fig:crack_5}
+% \end{figure}
+
+\begin{figure}
+	\begin{tabular}{cc}
+		\includegraphics[width=0.45 \textwidth]{images/part2/crack_1.png} & \includegraphics[width=0.45 \textwidth]{images/part2/crack_2.png} \\
+		Эксперимент № 1 & Эксперимент № 2 \\[6pt]
+		\includegraphics[width=0.45 \textwidth]{images/part2/crack_3.png} &   \includegraphics[width=0.45 \textwidth]{images/part2/crack_4.png} \\
+		Эксперимент № 3 & Эксперимент № 4 \\[6pt]
+		\multicolumn{2}{c}{\includegraphics[width=0.45 \textwidth]{images/part2/crack_5.png} }\\
+		\multicolumn{2}{c}{Эксперимент № 5}
+	\end{tabular}
+	\caption{Результаты: полученные трещины для различных наклонов линии перфорации}
+\end{figure}
+
+Как видно из 8 - направление трещины зависит от угла перфорации так, что сама трещина в процессе ГРП распространяется вдоль направления, перпендикулярного наибольшего напряжения - $\sigma_{max}$.
+
+Для демонстрации итоговых результатов удобно отобразить промежуточные итоги на одном рисунке:
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65 \textwidth]{images/part2/cracks.png}
+	\caption{Моделирование распространения трещин ГРП для различных значений угла перфорации}
+	\label{fig:cracks}
+\end{figure}
+
+
+
+На \ref{fig:cracks} изображены трещины для разных значений угла перфорации, а также отображено направление, по которому предположительно трещина будет расти. Как можно видеть, данное предположение выполняется с использованием модели \eqref{eq:poroelasticity}.
+
+\subsection*{Выводы}
+
+В данном разделе была рассмотрена задача о распространении трещины ГРП выходящей из заранее сделанной перфорации, а также рассмотрена зависимость того, как трещина растет от величины угла перфорации. Для моделирования среды использоваласт простая линейная модель, рассмотрены хрупкие разрушения, а также в качестве модели фильтрации использовался закон Дарси. \newpage В дальнейшем, можно добавить зависимость проницаемости от степени разрушения элемента, были проведены попытки учесть данный эффект, однако на данный момент работа еще не доделана. Также стоит отметить тот факт, что трещина имеет сложную структуру - это связано с тем фактом, что использовался метод конечного элемента и элементы Лагранжа - кусочно-линейные функции, а также сетка, состоящая из треугольных элементов. Все эти факты приводят к некоторым вычислительным погрешностям. Также вдобавок к погрешностям численного решения, добавляется момент, связанный с визуализацией. 
+
+% \chapter{Solving differential equations}
+
+% Before starting talking about solving a single partial differential equation (PDE) or system of PDEs and about neural networks need to clearly understand what are the existing methods for this problem, how they work, what the strong and weak sides, which facts influence the quality of the solution. 
+
+% \section{Function approximation}
+
+% \input{chapters/chapter2/chapter2_intro}
+% \input{chapters/chapter2/chapter2_linear_regression}
+
+% \newpage
+% \section{Expansion the functions into the functional series}
+% Linear regression looks like the function expansion, in some sense, into the series of predefined functions \eqref{eq:linear_expansion}. If let $\phi_i = cos$ then the linear regression transforms to cosine expansion, but without orthogonality criterion. Instead of cosines can be used any functions, Chebyshev polynomials or Legendre polynomials. 
+% Let's talk about each function separately.
+
+% \input{chapters/chapter2/chapter2_fourier}
+% \input{chapters/chapter2/chapter2_chebyshev}
+% \input{chapters/chapter2/chapter2_another}
+
+% \newpage
+% \section{Solving differentials equations}
+% \input{chapters/chapter2/chapter2_de_intro}
+% \input{chapters/chapter2/chapter2_de_solving}

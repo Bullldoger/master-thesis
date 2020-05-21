@@ -52,7 +52,7 @@
 
 \def\baselinestretch{\mystretch}	% Double spacing hack
 
-\parindent 1.27cm
+\parindent 1.5cm
 %%%%%%%  Set up margins and formatting params %%%
 
 % Margins.
@@ -62,7 +62,7 @@
 
 \usepackage{geometry}
 \geometry{left=3cm}
-\geometry{right=1.5cm}
+\geometry{right=3cm}
  \geometry{top=2cm}
  \geometry{bottom=2cm}
 
