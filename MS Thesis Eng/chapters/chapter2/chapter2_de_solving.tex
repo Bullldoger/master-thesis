@@ -1,5 +1,5 @@
-\subsection{Solving Ordinary differential equations}
-In this part consider the arbitrary ODE:
+\subsection{Solving differential equations (DE)}
+In this part consider the arbitrary DE:
 \begin{equation}
 	\label{eq:ode}
 	\begin{multlined}
@@ -18,15 +18,6 @@ where $D(y)$ - Dirichlet boundary conditions and $\partial \Omega_D$ boundary fo
 All of the equations considered now and in the future in this work will be defined as \eqref{eq:ode}.
 
 For solving this equation will be considered two methods, weighted residuals method \cite{fletcher2012computational} (Bubnov-Galerkin) and finite differences method \cite{dimov2019finite}.
-
-For concreteness, ODE example for consideration:
-\begin{equation*}
-	\begin{multlined}
-		\dfrac{d}{d x^2} y(x) + 2y = sin(2x) \left ( 1 - 2 sin(2x) \right), x \in [0, 1]\\
-		y(0) = 0, \quad \dfrac{d}{dx} y \Big|_{x = 0} = 1
-	\end{multlined}
-\end{equation*}
-, where $y = \dfrac{1}{2} sin(2x)$ - analytical solution.
 
 \subsubsection{Galerkin method}
 The key idea is to define the solution as:
@@ -142,9 +133,17 @@ The form of the derivative immediately told that the solving of equations \eqref
 
 \subsubsection{Artificial neural networks (ANN)}	
 Definition from Wikipedia is ``Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains. Such systems "learn" to perform tasks by considering examples, generally without being programmed with task-specific rules``, or the second one definition: ``A mathematical model, as well as its software or hardware implementation, built on the principle of organization and functioning of biological neural networks - networks of nerve cells of a living organism.''
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1 \textwidth]{images/chapter2/simple_net.png}
+	\includegraphics[width=\textwidth]{images/chapter2/neural_network_fcn.png}
+	\caption{The illustration of \eqref{eq:perceptron_ode}. One layered neural network}
+	\label{fig:simple_net}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter2/simple_net.png}
 	\caption{The illustration of \eqref{eq:perceptron_ode}. One layered neural network}
 	\label{fig:simple_net}
 \end{figure}
@@ -188,10 +187,11 @@ To demonstrate the quality of various optimization algorithms, a simple neural n
 The results are presented in the figure \ref{fig:optimizers}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75 \textwidth]{images/chapter2/optimizers.png}
+	\includegraphics[width=\textwidth]{images/chapter2/optimizers.png}
 	\caption{Comparison of different optimizers for fixed neural network architecture}
 	\label{fig:optimizers}
 \end{figure}
+
 
 Consider the sequence of the operators \eqref{eq:neural_net} and the quality function or loss function $\mathcal{L}$. Currently not important what loss function and the nature of the operators:
 \begin{equation*}
@@ -218,7 +218,7 @@ Here the solution is presented in the form:
 	y_h = A(x) + B(x) \mathcal{N}(x)
 \end{equation}
 where $A$ satisfies the boundary conditions of the first and second kind, where $A$ satisfies the boundary conditions of the first and second kind, and $B$ is in a sense a function of distance, or rather a function that “removes” the values of the model (neural network) at the boundary. 
-\paragraph{Example}
+
 Consider equation $\phi \left ( x, y, \dfrac{d y}{d x}, \dfrac{d^2 y}{d x^2} \right ) = 0$ and boundary conditions $y(0) = y_0, y(1) = y_1$. In this case, the solution will be built in the form:
 \begin{equation*}
 	y_h = (1 - x) y_0 + x y_1 + (1 - x) x \mathcal{N}(x)
@@ -237,20 +237,145 @@ Another approach \cite{cao2016locally} also embeds the boundary conditions in th
 \end{itemize}
 Each group has its own characteristics, so for methods from the first group, the high quality of the solution is characteristic, but the difficulty of drawing up the presentation of the solution is high. The second group is characterized by a not very high quality solution, especially at the borders, however, with sufficient training time and properly selected regularization, this problem is solved, but the plus is the ease of implementation.
 
-\subsubsection{Examples of ODE}
+For the demonstration of the proposed approach consider the first example - ODE:
 \begin{equation*}
 	\dfrac{d y}{d x} = sin(x), \quad y(0) = -1
 \end{equation*}
 
-\begin{tabular}{c c c}
- Method & Parameters num & Accuracy \\
- FDM & 10  & $7.82 10^{-3}$  \\
- FDM & 25  & $2.88 10^{-3}$  \\
- FDM & 50  & $1.44 10^{-3}$  \\
- FDM & 100  & $0.69 10^{-3}$ \\
-  FDM & 200  & $0.34 10^{-3}$ \\
- ANN & 8  & $0.298 10^{-3}$  \\
- ANN & 10  & $0.111 10^{-3}$ \\
- ANN & 20  & $0.0105 10^{-3}$  \\
-ANN & 50  & $0.00413 10^{-3}$
-\end{tabular}
+The loss function for the training neural network:
+\begin{equation}
+	\begin{multlined}
+		\mathcal{N} = A^1 \sigma \left [ A^0 x + b^0 \right ] + b^1 \\
+		\mathcal{L} = \sum_{x_k \in X} \left [ \dfrac{d}{d x} \mathcal{N} \big|_{x = x_k} - sin(x_k) \right ]^2 + \lambda \left [  \mathcal{N} \left( 0 \right ) + 1 \right ]^2 \\
+		\left ( \hat{A}^1, \hat{A}^0, \hat{b}^1, \hat{b}^0 \right ) = \min_{A^1, A^0, b^1, b^0} \mathcal{L} = \min_{A^1, A^0, b^1, b^0} \sum_{x_k \in X} \left [ \dfrac{d}{d x} \mathcal{N} \big|_{x = x_k} - sin(x_k) \right ]^2 + \\ + \lambda \left [  \mathcal{N} \left( 0 \right ) + 1 \right ]^2
+	\end{multlined}
+\end{equation}
+
+\begin{table}
+	\centering
+	\begin{tabular}{| c | c | c |} 
+	\hline
+		Method & Parameters num & Accuracy \\
+		\hline FDM & 10  & $7.82 10^{-3}$  \\ 
+		FDM & 25  & $2.88 10^{-3}$  \\
+		FDM & 50  & $1.44 10^{-3}$  \\
+		FDM & 100  & $0.69 10^{-3}$ \\
+		FDM & 200  & $0.34 10^{-3}$ \\
+		ANN & 8  & $0.298 10^{-3}$  \\
+		ANN & 10  & $0.111 10^{-3}$ \\
+		ANN & 20  & $0.0105 10^{-3}$  \\
+		ANN & 50  & $0.00413 10^{-3}$ \\ \hline
+	\end{tabular}
+	\caption{Accuracy of the solution for different number of the parameters}
+	\label{table:ode1_tab}
+\end{table}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter2/ode1-training-info.png}
+	\caption{Training process for several}
+	\label{fig:ode1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter2/fdm_ann_ode_1.png}
+	\caption{Graphical description of the table \ref{table:ode1_tab}}
+	\label{fig:fdm_ann_ode1}
+\end{figure}
+
+The training process on the figure \ref{fig:ode1} describes the solving process and the values of the loss per training iteration for $n$ independent launches. So, it is important, because in fact, when the neural network created, parameters initialized randomly using algorithms presented by \cite{glorot2010understanding} \cite{he2015delving} \cite{saxe2013exact}. 
+The comparison of the FDM solution and the neural network solution describes table \ref{table:ode1_tab}. In this work was used Xavier initialization for all networks. For the convenience of the analysis the table \ref{table:ode1_tab} results presented in figure \ref{fig:fdm_ann_ode1}. Here it can be seen that the accuracy of the FDM increases linearly on the logarithm-logarithm plot, which means, that for the decrease the loss function on the 1 order is possible if the number of the parameters will increase in 2 times.
+
+Future analysis will be provided in some steps, first is to apply a neural network-based solver to some number of the ODE's, simple linear, nonlinear, and for the system. The next step includes the application of the solver to single PDE, like the Poisson equation and wave equation, one nonlinear ODE. The last step will be provided for the system's of the PDEs: Stokes equation and Linear elasticity equations. Each of the presented steps will include the comparison of the used number of the parameters for the ANN and for the numerical method, such as FDM or FEM.
+
+\newpage
+
+\subsection*{Solution of systems of ordinary differential equations}
+The solution of a system of ordinary differential equations reduces to the solution of each equation separately, with other functions already known. The idea is to replace each function with a neural network, or use one with several outputs, where each output is a separate function. The loss function will be the sum of the loss function for each equation in the system.
+
+As an example, the system of equations \eqref{eq:ode_sys_1}  will be solved.
+\begin{equation}
+	 \label{eq:ode_sys_1}
+	\begin{cases}
+		\dfrac{d x}{d t} = sin(t) - y \\[10pt]
+		\dfrac{d y}{d t} = cos(t) + x \\[10pt]
+		x(0) = x_0, y(0) = y_0
+	\end{cases}
+\end{equation}
+
+To apply the proposed approach, it is necessary to formulate the objective function:
+\begin{equation}
+	\label{eq:loss_ode_sys_1}
+	\begin{multlined}
+		\mathcal{N} = [ \mathcal{N}_x, \mathcal{N}_y ]^T, \quad
+		\begin{cases}
+			\dfrac{d x}{d t} = sin(t) - y \\[10pt]
+			\dfrac{d y}{d t} = cos(t) + x \\[10pt]
+			x(0) = x_0, y(0) = y_0
+		\end{cases} \implies \mathcal{L} = \mathcal{L}_1 + \mathcal{L}_2 + \mathcal{L}_{\text{boundary}} \\ \mathcal{L} = \dfrac{1}{\left | T \right |} \sum_{t \in T \subset R} \left [ \dfrac{d \mathcal{N}_x}{d t} - sin(t) + \mathcal{N}_y \right ]^2 + \\ + \dfrac{1}{\left | T \right |} \sum_{t \in T \subset R} \left [ \dfrac{d \mathcal{N}_y}{d t} - cos(t) - \mathcal{N}_x \right ]^2 + \\ + \lambda_1 \left [ \mathcal{N}_x \right ]^2 \big|_{t = 0} + \lambda_2 \left [ \mathcal{N}_y \right ]^2 \big|_{t = 0}
+	\end{multlined}
+\end{equation}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1 \textwidth]{images/chapter2/ode_sys_1_res.png}
+	\caption{Solution of equation \eqref{eq:ode_sys_1}, $\quad \mathcal{L} = 2.14565 \cdot 10^{-7} $ }
+	\label{fig:ode_sys_1_res}
+\end{figure}
+
+Figure \ref{fig:ode_sys_1_res} the left part is the process of minimizing the error function, the right part is the result of a solution using a neural network - lines and the analytical solution - circles. It can be seen that the solution coincides, despite the fact that only 18 parameters are used in the neural network.
+
+\subsection*{Solving partial differential equations}
+
+To solve partial differential equations, the same approach is used as for solving ordinary differential equations. By example, the Poisson equation will be solved.
+
+\begin{equation*}
+	\nabla^2 u = f(x), \quad \nabla^2 = \nabla \cdot \nabla, \forall x \in \Omega
+\end{equation*}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c |} 
+		\hline
+		$f(x) = $ & Solution & Equation number \\ \hline
+		$ -2 sin(x) cos(y) $ & $ y = sin(x) cos(y) $ & 1\\
+		$ 2 y^2 + 2 x^2 $ & $ y = x^2 y^2 $ & 2\\ \hline
+	\end{tabular}
+	\caption{Examples of equations to consider}
+	\label{table:pde1_tab}
+\end{table}
+
+The results of solving each equation are presented in graphs \ref{fig:pde_1_1}, \ref{fig:pde_1_2}. To solve the equations, we considered a network structure including 1 one with a sigmoidal activation function. The process of training a neural network took about 10 seconds, which is quite a long time, but it is important to understand that the number of parameters is 18, which is very small for construction and the convergence to the solution is slow because of this.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter2/pde_1_1.png}
+	\caption{Solution of equation 1 from the table \ref{table:pde1_tab}}
+	\label{fig:pde_1_1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter2/pde_1_2.png}
+	\caption{Solution of equation 2 from the table \ref{table:pde1_tab}}
+	\label{fig:pde_1_2}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c |} 
+		\hline
+		$f(x) = $ & Solution & Equation number & Solution accuracy & Figure \\ \hline
+		$ -2 sin(x) cos(y) $ & $ y = sin(x) cos(y) $ & 1 & 6.0114e-06 & \ref{fig:pde_1_1} \\
+		$ 2 y^2 + 2 x^2 $ & $ y = x^2 y^2 $ & 2 & 7.1142e-05 & \ref{fig:pde_1_2}  \\ \hline
+	\end{tabular}
+	\caption{Results for the equations from the table \ref{table:pde1_tab}}
+	\label{table:pde1_tab_results}
+\end{table}
+
+In table \ref{table:pde1_tab_results}, the accuracy column reflects the average normalized root of the deviation, or in other words, the average deviation from the analytical solution. The figures show that the solution built by the neural network is close to true, and also reflects all the features of the function. The convergence on the graphs without problems and jumps between local extremes, which is good. In general, to solve the specifically given equation, the method is suitable for any other too, but it may require adjustment of the network architecture, the choice of an optimizer and the duration of the training.
+
+\section{Conclusions}
+
+In this chapter, approximation problems based on linear regression were considered. For linear regression, basic methods for estimating coefficients were considered, and problems that may arise in the process of their estimation were also considered, such as insufficiently generalized ability due to lack of data or strong collinearity of data, leading to a high value of the condition number. Then, from the basic task of supervised learning, a transition was made to replacing the kernel in linear regression and possible replacements, such as the transformation of linear regression into the restoration of the image of the function in the Fourier and Chebyshev space, were considered. Specifically, these functions were considered in view of the fact that there are strong theorems guaranteeing convergence in pointwise and in the sense of the $L_2$ norm. Also, theorems on decreasing coefficients cannot be left unnoticed, since without loss of quality it is possible to limit these expansions in the future and not worry about subsequent effects. After the conclusions made that in the general case, with an arbitrary core, the linear regression model only builds an expansion in basic functions, it was suggested that a single-layer neural network is a similar expansion, with a pre-selected core - a sigmoid function. For this function, there is Tsybenko’s theorem guaranteeing the quality of approximation of arbitrary accuracy with an increase in the number of terms in the expansion. All these conclusions lead to the conclusion that to solve differential equations it remains only to correctly compose the optimization problem, then the solution will be guaranteed to be found, if it exists for the initial problem itself. Ideas and conclusions were borrowed from various works, and are indicated in the list of sources. However, it is worth noting that no work with a similar approach has been encountered before and this issue will be further worked out. In addition it is worth noting the second fact that the current chapter fully explains that to solve differential equations by the method using neural networks, it is enough to use single-layer networks, which significantly narrows the family of architectures for learning. An increase in depth is guaranteed to lead to an improvement in the solution with sufficient training time, however, effects appear associated with jumps in the objective function during training process due to the large number of local minima. For the tasks, we used the same optimization algorithm based on gradient descent and the influence of the algorithm parameters, as well as the choice of the algorithm itself on the quality of the solution and the rate of convergence, was not investigated, but most likely the results will differ and still this is important. At the end, solutions of typical problems for ODEs, system of ODE, and a one-dimensional partial differential equation were presented. Partial differential equations systems are presented in a next  chapter, since in addition to the introduced criteria for training a neural network, an important feature of the work is the solution of partial differential equations systems.
