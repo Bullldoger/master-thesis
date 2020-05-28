@@ -1,10 +1,9 @@
-\subsection{Chebyshev polynomials and series}
-Again, instead of using trigonometric polynomials, try to apply another system of orthogonal polynomials - Chebyshev polynomials and expansion into the Chebyshev series. 
-The Chebyshev polynomials can be defined as the recurrent sequence:
+\subsection{Chebyshev polynomials and Chebyshev series}
+Again, instead of using trigonometric polynomials, you can apply another system of orthogonal polynomials - Chebyshev polynomials and expand the desired function in a Chebyshev series. A distinctive feature of the use of this system of polynomials is the fact that the Gibbs phenomenon is absent. The Gibbs phenomenon is a special case of the problem of the numerical representation of a function with sharp jumps through its Fourier series. Chebyshev polynomials can be defined as a recurrence sequence:
 \begin{equation}
 	T_0(x) = 1, T_1(x) = x, \dots, T_n(x) = 2 x T_{n - 1}(x) - T_{n - 2}(x)
 \end{equation}
-This polynomials are orthogonal with weight $w(x) = \dfrac{1}{\sqrt{1 - x^2}}$\cite{mason2002chebyshev}:
+This polynomials are orthogonal with weight $w(x) = \dfrac{1}{\sqrt{1 - x^2}}, more details here$\cite{mason2002chebyshev}:
 \begin{equation}
 	\label{eq:chebyshev_series}
 	\int_{-1}^{1} T_k(x) T_l(x) w(x) dx = \begin{cases}
@@ -37,8 +36,7 @@ Chebyshev series is the expansion of the function by his polynomials or, simply 
 	\text{and } w(x) \text{ weight function } = \dfrac{1}{\sqrt{1 - x^2}}
 	\end{multlined}
 \end{equation*}
-
-And the convergence theorem.
+The convergence theorem of Chebyshev functional series:
 \begin{theorem}
 \label{chevyshev_convergence}
 When a function $f$ has $m + 1$ continous derivatives on $[-1, 1]$ or $ f \in C^{m + 1}[-1, 1] $, where $m \in N^+$, then $\| f(x) - S_k(x) \| = \mathcal{O}\left ( \dfrac{1}{k^m} \right )$ as $k \rightarrow \infty \quad \forall x \in [-1, 1]$ 
@@ -46,20 +44,17 @@ When a function $f$ has $m + 1$ continous derivatives on $[-1, 1]$ or $ f \in C^
 The proof here \cite{mason2002chebyshev}.
 This theorem described the same fact that theorem \ref{convergence-l2-norm}  described for the Fourier expansion.
 
-\paragraph{Example of Chebyshev interpolation}
-Consider the function $y = sin(x) + x cos(x)$ and at the fig. \ref{fig:chebyshev_expansion} the results. 
-\begin{figure}[h]
+For example, consider the function $y = sin(x) + x cos(x)$ and at the fig. \ref{fig:chebyshev_expansion} the results. 
+\begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{images/chapter2/chebyshev_series.png}
 	\caption{Chebyshev expansion with 3, 4, 5, 6 terms }
 	\label{fig:chebyshev_expansion}
 \end{figure}
-
-
 In fact, Chebyshev series is Generalized Fourier series: 
 \begin{equation*}
 	\begin{multlined}
 		f(x) = \sum_{i = 1}^{N} c_n \phi_n(x) \\
-		\left < \phi_i, \phi_j \right > = \int_{V} \phi_i \phi_j w dV = K \delta_i^j
+		\left < \phi_i, \phi_j \right > = \int_{V} \phi_i \phi_j w dV = K_i^j
 	\end{multlined}
 \end{equation*}

@@ -1,15 +1,4 @@
-\subsection{Another functions and expansion over them}
-In case, when Generalized Fourier Series (GRS) is considered there are a lot of function can be used, for example\cite{abramowitz1965handbook}:
-\begin{itemize}
-	\item Gegenbauer polynomials
-	\item Jacobi polynomials
-	\item Romanovski polynomials
-	\item Legendre polynomials
-\end{itemize}
-
-All have their own weight function and satisfy the GSR and potentially applicable for function approximation via the least-squares method and gradient-based methods with suitable penalty parameter (regularization term). In fact, during the approximation process (or supervised learning) includes fixation of the basis function, choice of the regularization. On the other hand, usage orthogonal functions for approximation or interpolation not restricted only GSR, actually, the linear regression model uses linearly-independent functions only.
-
-\subsubsection{Function expansion over sigmoid function}
+\subsection{Sigmoidal Functional Series}
 Let $\sigma = \dfrac{1}{1 + e^{-x}}$ and substitute to \eqref{eq:linear_expansion} instead of $\phi_i$ and apply an affine transformation to argument:
 \begin{equation}
 	\label{eq:sigmoidal_expansion}
@@ -17,7 +6,7 @@ Let $\sigma = \dfrac{1}{1 + e^{-x}}$ and substitute to \eqref{eq:linear_expansio
 \end{equation}
 the expansion over the sigmoid functions is got. 
 This expansion, in fact, one of the widely used in approximation process. First of all, there is a useful theorem that provides guarantees of the quality for approximation. 
-\newpage
+
 \begin{theorem}
 	\label{sigmoidal_expansion}
 	Let $\sigma = \dfrac{1}{1 + e^{-x}}$, then finite sums of the form:
@@ -31,6 +20,17 @@ This expansion, in fact, one of the widely used in approximation process. First 
 	}, \epsilon > 0$, there is a sum, $G(x)$, of the above form, for which:
 	 $\| G(x) - f(x) \| < \epsilon, \quad \forall x \in I_n$
 \end{theorem}
-In simple words, this theorem provides justification for the expansion of the function into the sigmoidal series, moreover, the quality of the approximation can be tremendously increased via increasing the terms in the series. By the way, the series \eqref{eq:sigmoidal_expansion} named neural network\footnote{Neural network, or Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains. Such systems "learn" to perform tasks by considering examples, generally without being programmed with task-specific rules.} or perceptron\footnote{In machine learning, the perceptron is an algorithm for supervised learning of binary classifiers or regressor.} with one hidden layer and sigmoidal activation function. 
+Simply put, this theorem provides the rationale for expanding a function in a sigmoid series, in addition, the quality of approximation can be significantly improved by increasing the terms in the series. By the way, the \eqref{eq:sigmoidal_expansion} series is also called the single-layered perceptron \footnote{In machine learning, the perceptron is an algorithm for the controlled training of binary classifiers or regressors.} Or the artificial neural network \footnote{Neural network, or Artificial neural networks (ANN ), or connection systems, are computing systems vaguely inspired by the biological neural networks that make up the brain of animals. Such systems "learn" to perform tasks, examining examples, usually without programming, using rules specific to the tasks.}
 
-Coefficients for the expansion can be found via the least-squares method or using the gradient-based methods which more suitable when talking about neural networks. The question of estimating them is a future section question, but there is a lot of special algorithms for it.
+Coefficients in the expansion can also be found using the least squares method or using gradient-based methods that are better suited when it comes to artificial neural networks. The question of estimating the coefficients (or weights) is a question of the future section, but there are many special algorithms for this.
+
+\subsection{Another functions and expansion over them}
+In case, when Generalized Fourier Series (GRS) is considered there are a lot of function can be used, for example \cite{abramowitz1965handbook}:
+\begin{itemize}
+	\item Gegenbauer polynomials
+	\item Jacobi polynomials
+	\item Romanovski polynomials
+	\item Legendre polynomials
+\end{itemize}
+
+All of them have their own weight functions and are generalized Fourier series. Potentially, each of these expansions is applicable for approximating functions using the least squares method and using methods based on gradient descent with an appropriate step and regularization methods. In fact, in the process of approximation (or controlled learning), the basis function is fixed and the appropriate regularization method is selected, for example, the Lagrange method \cite{городецкий2007нелинейное}. Moreover, the use of orthogonal functions for approximation or interpolation is not limited to generalized Fourier series. In practice, linearly independent functions or sets of functions are most often used based on prior knowledge of the approximated function or process.

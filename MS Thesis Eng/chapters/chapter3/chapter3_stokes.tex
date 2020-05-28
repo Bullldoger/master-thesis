@@ -3,6 +3,7 @@ The Stokes equation or, more generally, the Navier-Stokes equation describes a f
 
 So, the system of equations is as follows:
 \begin{equation}
+	\label{eq:stokes_sys}
 	\begin{cases}
 		\left ( u \cdot \nabla \right ) u = \nabla^2 u - \nabla p \\
 		\nabla \cdot u = 0 \\
@@ -42,6 +43,7 @@ Boundary conditions will be considered later. The problem is considered immediat
 \end{equation}
 For simplicity, one can describe a neural network by a sequence of numbers $n_i$, such that the first term sequentially characterizes the dimension of the space on which the equation is solved, and the last characterizes the required number of outputs or the number of required functions. Now the neural network can be written in compact form:
 \begin{equation}
+	\label{eq:neural_net_by_vec}
 	\begin{multlined}
 		\mathcal{N}_{\vec{n}} = A^l_{n_{l} \times n_{l - 1}} \circ \phi^{l - 1} \circ A^{l - 1}_{n_{l - 1} \times n_{l - 2}} \circ \dots \circ \phi^1 \circ A^1_{n_{0} \times n_{1}} = \\ = A^l_{n_{l} \times n_{l - 1}} \left [ \phi^{l - 1} \left [ \dots \left [ A^1_{n_{0} \times n_{1}} (x) + b^1_{n_1} \right ] \dots \right ] + b^{l - 1}_{n_{l - 1}} \right] + b^l_{n_l} \\ A^l_{n_{l} \times n_{l - 1}} \in R^{n_{l} \times n_{l - 1}}, b^{l - 1}_{n_{l - 1}} \in R^{n_{l - 1}}
 	\end{multlined}
@@ -79,6 +81,25 @@ We will carry out several operations sequentially, to begin with, substitute the
 \end{equation}
 $W$ - a set of optimal parameter values for model \ref{eq:model_stokes_arb} in form \eqref{eq:parameters_model}.
 
+Table \ref{table:stokes_tab} describes all configurations to consider. Problem \eqref{eq:stokes_sys} is considered inside a rectangular region, with boundary conditions:
+\begin{equation}
+	\label{eq:boundary_conditions}
+	\begin{cases}
+		u_x = u_y = 0, \quad y \in \{0, 1\} \\
+		p = 0.1, \quad x = 0 \\
+		p = 0.0, \quad x = 1
+	\end{cases}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{images/chapter3/stokes_description.png}
+	\caption{$\Omega$ and boundary conditions from \eqref{eq:boundary_conditions}}
+	\label{fig:stokes_description}\tabularnewline
+\end{figure}
+
+In the table \ref{table:stokes_tab} the conditions of the first experiment are described, which includes the use of several simple architectures to approximate the solution. It is important to understand how large a configuration is needed to achieve a certain accuracy. Further, after choosing the architecture, we can talk about using other activation functions to analyze the behavior of the solution.
+
 \begin{table}
 	\centering
 	\begin{tabular}{| c | c | c |} 
@@ -94,7 +115,7 @@ $W$ - a set of optimal parameter values for model \ref{eq:model_stokes_arb} in f
 		$[2, 8, 8, 8, 3]$ & 168 & $0.00016$ \\ \hline
 		$[2, 16, 16, 16, 3]$ & 592 & $0.00011$ \\ \hline
 	\end{tabular}
-	\caption{Accuracy of the solution for different number of the parameters}
+	\caption{Accuracy of the solution for different number of the parameters [Stokes equation]}
 	\label{table:stokes_tab}
 \end{table}
 
@@ -138,3 +159,18 @@ An important result of table \ref{table:stokes_tab} and figure \ref{fig:stokes_s
 \end{figure}
 
 The learning process was depicted for all architectures, as this would lead to a misunderstanding of the drawing due to its overcrowding. Also, an important result is that the architecture using the сosine activation function gave an increase compared to the usual sigmoid function. 
+
+Having chosen about the optimal architecture of the neural network to solve the equation, we can compare whether the improvement of the approximation ability gives the replacement of the activation function within a fixed network configuration. Figure \ref{fig:stokes_simple_nets_cos} shows that there is a change in quality for the better, the calculation was carried out more than 10 times for each model in order to collect statistically significant results. The analytical form of the solution obtained for the figure, respectively:
+\begin{equation*}
+	\begin{matrix}
+		\mathcal{N}_{[2, 8, 3]}^{\sigma} = A^1 \sigma \left [ A^0 x + b^0 \right ] + b^1 \\[10pt]
+		\mathcal{N}_{[2, 8, 3]}^{cos} = A^1 cos \left [ A^0 x + b^0 \right ] + b^1
+	\end{matrix}
+\end{equation*}
+
+It is important to remember that not only the replacement of the activation function was used, but also the criterion \eqref{eq:regularization_criterion_fourier}, \eqref{eq:regularization_criterion_fourier_matrix} corresponding to it, which guaranteed the orthogonality of the functions obtained on the last layer:
+\begin{equation*}
+	\begin{split}	
+		\mathcal{L}_{\text{regularization}} = \left [ \dfrac{sin(W - W^T) + B - B^T}{2 W - 2 W^T} + \dfrac{sin(W + W^T) + B + B^T}{2 W + 2 W^T} - I \right ]_F
+	\end{split}
+\end{equation*}

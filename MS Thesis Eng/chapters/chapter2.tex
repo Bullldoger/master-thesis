@@ -1,22 +1,18 @@
 \chapter{Solving differential equations}
 
-Before starting talking about solving a single partial differential equation (PDE) or system of PDEs and about neural networks need to clearly understand what are the existing methods for this problem, how they work, what the strong and weak sides, which facts influence the quality of the solution. 
+Before you start talking about solving a single partial differential equation (PDE) or PDE system, as well as about neural networks, you need to clearly understand what methods exist to solve this problem, how they work, what strengths and weaknesses, what facts affect quality decision. After that, you also need to understand how regression models are constructed, evaluated, and explained. Thus, starting with the simplest linear regression model, results will be obtained that will allow us to construct good approximations based on Fourier or Chebyshev series from the available data or the available quality function. One of the most important results related to the approximation of functions is a model of artificial neural networks based on a sigmoid function. Tsybenko’s theorem guarantees the convergence of model parameters to the desired function with arbitrary accuracy, for example. When considering differential equations and solving them based on the method of artificial neural networks, questions regarding the construction, training and reduction of the number of parameters will be revealed.
 
-\section{Function approximation}
+\section{Regression and regularization introduction}
+\input{chapters/chapter2/chapter2_regression_regularization}
 
-\input{chapters/chapter2/chapter2_intro}
-\input{chapters/chapter2/chapter2_linear_regression}
-
-\newpage
-\section{Expansion the functions into the functional series}
-Linear regression looks like the function expansion, in some sense, into the series of predefined functions \eqref{eq:linear_expansion}. If let $\phi_i = cos$ then the linear regression transforms to cosine expansion, but without orthogonality criterion. Instead of cosines can be used any functions, Chebyshev polynomials or Legendre polynomials. 
-Let's talk about each function separately.
+\section{Regression as one of the types of expansion of function into functional series}
+The linear regression model looks like expanding some unknown function in a series into predefined functions \eqref{eq:linear_expansion}. If we assume that $ \phi_i = cos $, then linear regression is transformed into an expansion of the function into a Fourier series, but without the mutual orthogonality of its terms. Instead of Fourier expansion, any functions, Chebyshev polynomials or Legendre polynomials can be used. In this section, we will discuss some expansions that are useful for further work.
 
 \input{chapters/chapter2/chapter2_fourier}
 \input{chapters/chapter2/chapter2_chebyshev}
 \input{chapters/chapter2/chapter2_another}
 
-\newpage
-\section{Differential equations solving based the neural networks}
+\section{Differention equations}
 \input{chapters/chapter2/chapter2_de_intro}
 \input{chapters/chapter2/chapter2_de_solving}
+\input{chapters/chapter2/chapter2_conclusions}
